@@ -324,42 +324,42 @@ public class Main{
    *
    *  @param numList  numList of ints
    */
-    public static ArrayList<Integer> modes(int[] numList) {
-        ArrayList<Integer> modes = new ArrayList<>();
-        int maxFrequency = 0;
-
-        int maxVal = 0;
-        for (int num : numList) {
-            if (num > maxVal) {
-                maxVal = num;
+    public static ArrayList<Integer> findModes(int[] numbers) {
+        ArrayList<Integer> modeList = new ArrayList<>();
+        int highestCount = 0;
+        // find the biggest number in the list so we know the array size
+        int largestValue = 0;
+        for (int value : numbers) {
+            if (value > largestValue) {
+                largestValue = value;
             }
         }
-
-        int[] frequency = new int[maxVal + 1];
-
-        for (int num : numList) {
-            frequency[num]++;
-            if (frequency[num] > maxFrequency) {
-                maxFrequency = frequency[num];
+        // make an array to count how many times each number shows up
+        int[] occurrences = new int[largestValue + 1];
+        // count each number and track the highest count
+        for (int value : numbers) {
+            occurrences[value]++;
+            if (occurrences[value] > highestCount) {
+                highestCount = occurrences[value];
             }
         }
-
-        int distinctCount = 0;
-        for (int count : frequency) {
+        // check if every number appears the same number of times
+        int uniqueCount = 0;
+        for (int count : occurrences) {
             if (count > 0) {
-                distinctCount++;
+                uniqueCount++;
             }
         }
-        if (distinctCount * maxFrequency == numList.length) {
-            return modes;
+        // if all numbers appear equally, there's no mode, so return an empty list
+        if (uniqueCount * highestCount == numbers.length) {
+            return modeList;
         }
-
-        for (int i = 0; i < frequency.length; i++) {
-            if (frequency[i] == maxFrequency) {
-                modes.add(i);
+        // add all numbers that showed up the most times to the list
+        for (int i = 0; i < occurrences.length; i++) {
+            if (occurrences[i] == highestCount) {
+                modeList.add(i);
             }
         }
-
-        return modes;
+        return modeList;
     }
 }
