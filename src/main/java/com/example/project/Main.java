@@ -328,7 +328,6 @@ public class Main{
         ArrayList<Integer> modes = new ArrayList<>();
         int maxFrequency = 0;
 
-        // Find the max value in the array to determine frequency array size
         int maxVal = 0;
         for (int num : numList) {
             if (num > maxVal) {
@@ -336,10 +335,8 @@ public class Main{
             }
         }
 
-        // Create frequency array
         int[] frequency = new int[maxVal + 1];
 
-        // Count occurrences of each number
         for (int num : numList) {
             frequency[num]++;
             if (frequency[num] > maxFrequency) {
@@ -347,7 +344,6 @@ public class Main{
             }
         }
 
-        // If all numbers appear the same number of times, return an empty list
         int distinctCount = 0;
         for (int count : frequency) {
             if (count > 0) {
@@ -355,10 +351,9 @@ public class Main{
             }
         }
         if (distinctCount * maxFrequency == numList.length) {
-            return modes; // No mode exists
+            return modes;
         }
 
-        // Add numbers with the highest frequency to the result list
         for (int i = 0; i < frequency.length; i++) {
             if (frequency[i] == maxFrequency) {
                 modes.add(i);
