@@ -74,9 +74,13 @@ public class Main{
      *  @param wordList  arraylist of Strings
      */
     public static ArrayList<String> duplicateUpperEnd(ArrayList<String> wordList){
-        for (int i = 0; i < wordList.size(); i++) {
+        
+        int size = wordList.size();
+        int j=0;
+        for (int i = 0; i < size; i++) {
             String word = wordList.get(i).toUpperCase();
             wordList.add(word);
+            j++;
         }
         return wordList;
     }
@@ -324,7 +328,7 @@ public class Main{
    *
    *  @param numList  numList of ints
    */
-    public static ArrayList<Integer> findModes(int[] numbers) {
+    public static ArrayList<Integer> modes(int[] numbers) {
         ArrayList<Integer> modeList = new ArrayList<>();
         int highestCount = 0;
         // find the biggest number in the list so we know the array size
